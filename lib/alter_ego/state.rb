@@ -9,7 +9,7 @@ module AlterEgo
     class StateContextCallback < HookR::InternalCallback
       def call(event)
         context = event.arguments.first
-        context.instance_eval(&block)
+        block.bind(context).call(*event.arguments[1..-1])
       end
     end
 
@@ -32,8 +32,8 @@ module AlterEgo
       to_state = options[:to]
       request  = options[:on]
       if request
-        handle(request) do
-          transition_to(to_state, request)
+        handle(request) do |*args|
+          transition_to(to_state, request, *args)
         end
       end
       valid_transitions << to_state unless valid_transitions.include?(to_state)
@@ -41,8 +41,8 @@ module AlterEgo
         method = guard.kind_of?(Symbol) ? guard : nil
         block  = guard.kind_of?(Proc) ? guard : nil
         predicate = FlexProc.new(method, &block)
-        guard_proc = proc do
-          result = instance_eval(&predicate)
+        guard_proc = proc do |*args|
+          result = predicate.bind(self).call(*args)
           throw :cancel unless result
         end
         add_request_filter(request, to_state, guard_proc)
@@ -119,7 +119,7 @@ module AlterEgo
 
       continue = context.execute_request_filters(self.class.identifier,
                                                  request,
-                                                 new_state)
+                                                 new_state, *args)
       return false unless continue
 
       unless valid_transitions.empty? || valid_transitions.include?(new_state)
@@ -127,8 +127,8 @@ module AlterEgo
               "Not allowed to transition from #{self.identifier} to #{new_state}")
       end
 
-      execute_hook(:on_exit, context)
-      new_state_obj.execute_hook(:on_enter, context)
+      execute_hook(:on_exit, context, *args)
+      new_state_obj.execute_hook(:on_enter, context, *args)
       context.state = new_state
       assert(new_state == context.state)
       true
@@ -136,8 +136,8 @@ module AlterEgo
 
     protected
 
-    define_hook :on_enter, :context
-    define_hook :on_exit,  :context
+    define_hook :on_enter, :context, "*args"
+    define_hook :on_exit,  :context, "*args"
 
     private
 
@@ -153,7 +153,10 @@ module AlterEgo
          end
       elsif block
         define_method(name) do |*args|
-          __getobj__.send(:instance_eval, &block)
+          if block.arity > -1 && args.length != block.arity
+            raise ArgumentError.new("wrong number of arguments (#{args.length} for #{block.arity})")
+          end
+          block.bind(__getobj__).call(*args)
         end
       end
     end

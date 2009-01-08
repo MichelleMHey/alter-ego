@@ -155,11 +155,11 @@ module AlterEgo
       self.class.all_handled_requests
     end
 
-    def execute_request_filters(state, request, new_state)
+    def execute_request_filters(state, request, new_state, *args)
       pattern = RequestFilter.new(state, request, new_state)
       self.class.request_filters.grep(pattern) do |filter|
         result = catch(:cancel) do
-          self.instance_eval(&filter.action)
+          filter.action.bind(self).call(*args)
           true
         end
         return false unless result
