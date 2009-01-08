@@ -1,0 +1,123 @@
+--- !ruby/object:Gem::Specification 
+name: alter-ego
+version: !ruby/object:Gem::Version 
+  version: 1.0.0
+platform: ruby
+authors: 
+- Avdi Grimm
+autorequire: 
+bindir: bin
+cert_chain: 
+- |
+  -----BEGIN CERTIFICATE-----
+  MIIDKDCCAhCgAwIBAgIBADANBgkqhkiG9w0BAQUFADA6MQ0wCwYDVQQDDARhdmRp
+  MRQwEgYKCZImiZPyLGQBGRYEYXZkaTETMBEGCgmSJomT8ixkARkWA29yZzAeFw0w
+  ODExMjYwMzQwMTBaFw0wOTExMjYwMzQwMTBaMDoxDTALBgNVBAMMBGF2ZGkxFDAS
+  BgoJkiaJk/IsZAEZFgRhdmRpMRMwEQYKCZImiZPyLGQBGRYDb3JnMIIBIjANBgkq
+  hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxp+TCbzj+cyaiE1xAqxO+irHbdNF+9y4
+  rZF3gCs0wfIcqeKDIvlks7FvH0Qj6yiAj8YHUgmuLORat2IBLBmX/G+G0Z2L6MLs
+  bNwx4YpbTW1cwOFVENSWwNjsvY68/I/EpAeRdtiskG/J33TDxi427dyBDSHsrQ8J
+  4oC24EnKwsTOdHwkEaDEmZJQeo5ienR7dalAwIPCIm4tA41kbilLVpMVp0f1hn5o
+  cVFYZgJFOdNnggVO9B/0/doQhxvC4Jdj2XeoOdIkjul1VjCeF+s+i/PhnKk/Y0++
+  /9fBCqzfFHYay5TOtTLDlzc7WoN5NBtKChn1gG0AnD+mJ4EnjvgTIQIDAQABozkw
+  NzAJBgNVHRMEAjAAMAsGA1UdDwQEAwIEsDAdBgNVHQ4EFgQUen5OQUuU+3P6OyVZ
+  NsrtAIO7DQcwDQYJKoZIhvcNAQEFBQADggEBAGwXuO2cpDc9m8iJmmbSjnDhhQYL
+  OssAG5bMy88JnrD+KufXA4BKvLTLkNtTSaNFvL74+FSIK8VwCUpEyn8rsYi3s6N8
+  /f5+5LDg19Jm6dmkRgFGQjF8cW0PheDtlY0Ywo+wdUhD+LFH+2VanZNx2dz6IjSh
+  A0uvcb+roaNG70ESPvoJO4PZFCkrgS2QE9TwnhRLi1DONaGmbMYWSZku4tHFEu+R
+  B/QQd37jgRGtEcplcoMaoCOqAvlIu6QkQt4X3jVhNGqeF2Wgmb1QXEF8cH/hqX4T
+  NNbtubu/GbyYwC2cb3Clh5gMrAYS765Q8U2aySfRySAFaQyPub+h0uVWkIc=
+  -----END CERTIFICATE-----
+
+date: 2008-11-28 00:00:00 +01:00
+default_executable: 
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: activesupport
+  type: :runtime
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 2.0.2
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: newgem
+  type: :development
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.1.0
+    version: 
+- !ruby/object:Gem::Dependency 
+  name: hoe
+  type: :development
+  version_requirement: 
+  version_requirements: !ruby/object:Gem::Requirement 
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        version: 1.8.0
+    version: 
+description: AlterEgo is a Ruby implementation of the State pattern as described by the Gang of Four.  It differs from other Ruby state machine libraries in that it focuses on providing polymorphic behavior based on object state.  In effect, it makes it easy to give an object different personalities depending on the state it is in.
+email: 
+- avdi@avdi.org
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- History.txt
+- Manifest.txt
+- PostInstall.txt
+- README.rdoc
+files: 
+- History.txt
+- Manifest.txt
+- PostInstall.txt
+- README.rdoc
+- State_Design_Pattern_UML_Class_Diagram.png
+- Rakefile
+- TODO
+- lib/assertions.rb
+- spec/assertions_spec.rb
+- lib/alter_ego.rb
+- script/console
+- script/destroy
+- script/generate
+- spec/spec.opts
+- spec/spec_helper.rb
+- spec/alter_ego_spec.rb
+- tasks/rspec.rake
+has_rdoc: true
+homepage: http://alter-ego.rubyforge.org
+post_install_message: 
+rdoc_options: 
+- --main
+- README.rdoc
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      version: "0"
+  version: 
+requirements: []
+
+rubyforge_project: alter-ego
+rubygems_version: 1.3.1
+signing_key: 
+specification_version: 2
+summary: AlterEgo is a Ruby implementation of the State pattern as described by the Gang of Four
+test_files: []
+
